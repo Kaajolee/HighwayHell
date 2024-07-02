@@ -17,6 +17,7 @@ public class CarControl : MonoBehaviour
 
     public int currentLaneIndex;
 
+    private bool isLerping = false;
     //private SwipeDetection swipeDetection;
 
     public float lerpSpeed;
@@ -59,10 +60,13 @@ public class CarControl : MonoBehaviour
     }
     void LerpCar()
     {
+        if(!isLerping)
         StartCoroutine(MoveCar(currentLaneIndex));
     }
     IEnumerator MoveCar(int targetIndex)
     {
+        isLerping = true;
+
         Vector3 currentPos = transform.position;
         Quaternion currentRot = transform.rotation;
 
@@ -84,5 +88,6 @@ public class CarControl : MonoBehaviour
         transform.position = targetPos;
         transform.rotation = targetRot;
 
+        isLerping = false;
     }
 }

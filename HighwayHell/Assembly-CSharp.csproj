@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{78019463-2169-1279-9119-A6DF5FA78FAD}</ProjectGuid>
+    <ProjectGuid>{3E62516C-A1AF-FF39-FB4B-F66F3A09A565}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CarControl.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\CarSpawner.cs" />
     <Compile Include="Assets\Scripts\SwipeDetection.cs" />
   </ItemGroup>
   <ItemGroup>
