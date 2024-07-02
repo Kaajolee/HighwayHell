@@ -1324,7 +1324,7 @@ Transform:
   m_GameObject: {fileID: 1678077216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.93}
+  m_LocalPosition: {x: 0, y: 0, z: 3.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   - {fileID: 1996780405}
   - {fileID: 343669599}
   - {fileID: 1678077217}
-  carPrefabs: {fileID: 0}
+  carPrefabs: {fileID: 1959030373088092, guid: d3a9898e22901924b98de4fff69bf9e6, type: 3}
   playerCar: {fileID: 410113818}
   offset: 50
 --- !u!4 &1716655386

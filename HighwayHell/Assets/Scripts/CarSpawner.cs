@@ -18,7 +18,7 @@ public class CarSpawner : MonoBehaviour
     private float offset;
     void Start()
     {
-        
+        StartCoroutine(InstantiateCars());
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class CarSpawner : MonoBehaviour
     {
         if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            InstantiateCar();
+            //InstantiateCar();
         }
     }
     void InstantiateCar()
@@ -39,11 +39,29 @@ public class CarSpawner : MonoBehaviour
         {
             clonedCar = Instantiate(carPrefabs, pos, Quaternion.identity);
             clonedCar.transform.Rotate(new Vector3(0, 90, 0));
+            AddComponents(clonedCar, true);
         }
         else if (index >= 2)
         {
             clonedCar = Instantiate(carPrefabs, pos, Quaternion.identity);
             clonedCar.transform.Rotate(new Vector3(0, -90, 0));
+            AddComponents(clonedCar, false);
+        }
+
+    }
+    void AddComponents(GameObject carClone, bool isGoingTowardsPlayer)
+    {
+        carClone.AddComponent<Rigidbody>();
+        TrafficCarMovement speed = carClone.AddComponent<TrafficCarMovement>();
+        speed.isGoingTowardsPlayer = isGoingTowardsPlayer;
+        speed.speed = Random.Range(500,1100);
+    }
+    IEnumerator InstantiateCars()
+    {
+        while (true)
+        {
+            InstantiateCar();
+            yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
         }
     }
 }

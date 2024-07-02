@@ -361,6 +361,7 @@
 "Assets/Scripts/CarControl.cs"
 "Assets/Scripts/CarSpawner.cs"
 "Assets/Scripts/SwipeDetection.cs"
+"Assets/Scripts/TrafficCarMovement.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 
