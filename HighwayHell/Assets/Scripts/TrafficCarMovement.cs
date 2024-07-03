@@ -23,5 +23,7 @@ public class TrafficCarMovement : MonoBehaviour
             rb.velocity = new Vector3(1,0,0) * speed * Time.deltaTime;
         else
             rb.velocity = new Vector3(-1, 0, 0) * speed * Time.deltaTime;
+
+        Destroy(gameObject, 15);
     }
 }

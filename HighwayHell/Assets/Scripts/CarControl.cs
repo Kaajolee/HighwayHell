@@ -11,6 +11,7 @@ public class CarControl : MonoBehaviour
 
     [SerializeField]
     private float forwardSpeed;
+    public float lerpSpeed;
 
     [SerializeField]
     private Transform[] lanePositions;
@@ -18,14 +19,16 @@ public class CarControl : MonoBehaviour
     public int currentLaneIndex;
 
     private bool isLerping = false;
+    private bool isCarCrashed = false;
     //private SwipeDetection swipeDetection;
+    public CollisionDetection collisionDetection;
 
-    public float lerpSpeed;
     void Start()
     {
         //MoveCarForwards();
         //swipeDetection = GetComponent<SwipeDetection>();
-
+        collisionDetection.OnCollided += CarCrashed;
+        GlobalEvents.OnGameRestarted += RestartCar;
         currentLaneIndex = 2;
 
         //swipeDetection.OnSwipedLeft += DecrementIndex;
@@ -36,7 +39,8 @@ public class CarControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveCarForwards();
+        if(!isCarCrashed)
+            MoveCarForwards();
     }
     void MoveCarForwards()
     {
@@ -61,7 +65,7 @@ public class CarControl : MonoBehaviour
     void LerpCar()
     {
         if(!isLerping)
-        StartCoroutine(MoveCar(currentLaneIndex));
+            StartCoroutine(MoveCar(currentLaneIndex));
     }
     IEnumerator MoveCar(int targetIndex)
     {
@@ -89,5 +93,18 @@ public class CarControl : MonoBehaviour
         transform.rotation = targetRot;
 
         isLerping = false;
+    }
+    void CarCrashed()
+    {
+        isCarCrashed = true;
+        //carRb.ResetInertiaTensor();
+        Time.timeScale = 0f;
+    }
+    void RestartCar()
+    {
+        transform.position = lanePositions[2].position;
+        carRb.position = transform.position;
+        carRb.ResetInertiaTensor();
+        isCarCrashed = false;
     }
 }

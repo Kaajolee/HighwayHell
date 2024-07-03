@@ -7,27 +7,29 @@ public class CarSpawner : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private Transform[] lanesTransform;
+    [SerializeField]
+    private Transform trafficParent;
 
     [SerializeField]
-    private GameObject carPrefabs;
+    private GameObject[] carPrefabs;
 
     [SerializeField]
     private GameObject playerCar;
 
     [SerializeField]
     private float offset;
+
+
     void Start()
     {
+        GlobalEvents.OnGameRestarted += DeleteTraffic; 
         StartCoroutine(InstantiateCars());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            //InstantiateCar();
-        }
+
     }
     void InstantiateCar()
     {
@@ -35,19 +37,22 @@ public class CarSpawner : MonoBehaviour
         GameObject clonedCar;
         Vector3 pos = new Vector3(playerCar.transform.position.x - offset, playerCar.transform.position.y, lanesTransform[index].position.z);
 
+        int carIndex = Random.Range(0, carPrefabs.Length);
+
         if (index <= 1)
         {
-            clonedCar = Instantiate(carPrefabs, pos, Quaternion.identity);
+            
+            clonedCar = Instantiate(carPrefabs[carIndex], pos, Quaternion.identity, trafficParent);
             clonedCar.transform.Rotate(new Vector3(0, 90, 0));
             AddComponents(clonedCar, true);
         }
         else if (index >= 2)
         {
-            clonedCar = Instantiate(carPrefabs, pos, Quaternion.identity);
+            clonedCar = Instantiate(carPrefabs[carIndex], pos, Quaternion.identity, trafficParent);
             clonedCar.transform.Rotate(new Vector3(0, -90, 0));
             AddComponents(clonedCar, false);
         }
-
+        
     }
     void AddComponents(GameObject carClone, bool isGoingTowardsPlayer)
     {
@@ -62,6 +67,13 @@ public class CarSpawner : MonoBehaviour
         {
             InstantiateCar();
             yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
+        }
+    }
+    void DeleteTraffic()
+    {
+        foreach (Transform car in trafficParent)
+        {
+            Destroy(car.gameObject);
         }
     }
 }
