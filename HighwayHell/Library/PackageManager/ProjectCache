@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638553482364352553
-    m_Hash: 1539146424
+      ticks: 638560253010552901
+    m_Hash: 931302516
   m_LockFileStatus:
     m_FilePath: C:/Users/Karolis/Documents/GitHub/HighwayHell/HighwayHell/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638553482364422080
-    m_Hash: 3471395346
+      ticks: 638560253010552901
+    m_Hash: 3503044731
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

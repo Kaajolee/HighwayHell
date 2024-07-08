@@ -12,6 +12,8 @@ public class CarControl : MonoBehaviour
     [SerializeField]
     private float forwardSpeed;
     public float lerpSpeed;
+    private float current;
+    private float target;
 
     [SerializeField]
     private Transform[] lanePositions;
@@ -64,34 +66,41 @@ public class CarControl : MonoBehaviour
     }
     void LerpCar()
     {
-        if(!isLerping)
-            StartCoroutine(MoveCar(currentLaneIndex));
+        if (!isLerping)
+        {
+            target = target == 0 ? 0 : 1;
+            StartCoroutine(MoveCar());
+        }
+            
     }
-    IEnumerator MoveCar(int targetIndex)
+    IEnumerator MoveCar()
     {
+        
         isLerping = true;
 
         Vector3 currentPos = transform.position;
-        Quaternion currentRot = transform.rotation;
+        //Quaternion currentRot = transform.rotation;
 
         Vector3 targetPos = new Vector3 (transform.position.x,
                                          transform.position.y,
-                                         lanePositions[targetIndex].position.z);
-        Quaternion targetRot = lanePositions[targetIndex].rotation;
+                                         lanePositions[currentLaneIndex].position.z);
+        /*Quaternion targetRot = lanePositions[targetIndex].rotation;
 
         float timeElapsed = 0;
         while (timeElapsed < 1)
         {
             transform.position = Vector3.Lerp(currentPos, targetPos, timeElapsed);
             transform.rotation = Quaternion.Lerp(currentRot, targetRot, timeElapsed);
-
+            //twee
             timeElapsed += Time.deltaTime * lerpSpeed;
             yield return null;
         }
-
-        transform.position = targetPos;
-        transform.rotation = targetRot;
-
+        */
+        //transform.position = targetPos;
+        //transform.rotation = targetRot;
+        current = Mathf.MoveTowards(current, target, lerpSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(currentPos, targetPos, current);
+        yield return null;
         isLerping = false;
     }
     void CarCrashed()
