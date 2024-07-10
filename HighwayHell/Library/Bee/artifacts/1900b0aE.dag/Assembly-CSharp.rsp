@@ -362,6 +362,7 @@
 "Assets/Scripts/CarSpawner.cs"
 "Assets/Scripts/CollisionDetection.cs"
 "Assets/Scripts/GlobalEvents.cs"
+"Assets/Scripts/PointCounter.cs"
 "Assets/Scripts/RestartButtonLogic.cs"
 "Assets/Scripts/SwipeDetection.cs"
 "Assets/Scripts/TrafficCarMovement.cs"

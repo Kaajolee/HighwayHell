@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\GlobalEvents.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\CarSpawner.cs" />
+    <Compile Include="Assets\Scripts\PointCounter.cs" />
     <Compile Include="Assets\Scripts\TrafficCarMovement.cs" />
     <Compile Include="Assets\Scripts\CollisionDetection.cs" />
     <Compile Include="Assets\Scripts\SwipeDetection.cs" />
