@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PointCounter : MonoBehaviour
@@ -9,6 +10,7 @@ public class PointCounter : MonoBehaviour
     [SerializeField]
     public float totalPoints;
     Vector3 currentPos;
+    public TextMeshProUGUI pointsText;
     void Start()
     {
         instance = this;
@@ -23,7 +25,7 @@ public class PointCounter : MonoBehaviour
     {
         if (transform.position.magnitude != 0)
         {
-            Debug.Log($"{totalPoints++}");
+            pointsText.text = "Points: " + totalPoints++;
         }
     }
 }
